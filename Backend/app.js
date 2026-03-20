@@ -1,8 +1,11 @@
 import express from 'express'
 import productsRouter from './src/routers/products.js'
 import branchrouter from './src/routers/branch.js'
-import employeesRoutes from "./src/routes/employees.js"
-import reviewsRouters from './src/models/reviews.js'
+import employeesRoutes from "./src/routers/employess.js"
+import reviewsRouters from './src/routers/review.js'
+import brandsRouters from './src/routers/brand.js'
+import adminsRouters from './src/routers/admins.js'
+import clientsRouters from './src/routers/clients.js'
 
 const app = express()
 
@@ -13,6 +16,9 @@ app.use("/api/products", productsRouter)
 app.use("/api/branchs", branchrouter)
 app.use("/api/employees", employeesRoutes)
 app.use("/api/review", reviewsRouters)
+app.use("/api/brands", brandsRouters)
+app.use("/api/admins", adminsRouters)
+app.use("/api/clients", clientsRouters)
 
 export default app;
 
