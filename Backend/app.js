@@ -6,6 +6,7 @@ import reviewsRouters from './src/routers/review.js'
 import brandsRouters from './src/routers/brand.js'
 import adminsRouters from './src/routers/admins.js'
 import clientsRouters from './src/routers/clients.js'
+import customersRouters from './src/routers/customers.js'
 
 const app = express()
 
@@ -19,6 +20,9 @@ app.use("/api/review", reviewsRouters)
 app.use("/api/brands", brandsRouters)
 app.use("/api/admins", adminsRouters)
 app.use("/api/clients", clientsRouters)
+app.use("/api/customers",customersRouters)
+app.use("/api/registerCustomers",)
+
 
 export default app;
 
