@@ -38,6 +38,9 @@ const EmployeSchema = new Schema({
     idBranch:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Branches"
+    },
+    isVerified:{
+        type: Boolean,
     }
 })
 
