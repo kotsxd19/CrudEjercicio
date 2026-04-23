@@ -9,7 +9,7 @@ import {config} from "../config.js"
 
 //Creo un array de funciones
 const registerCustomersController = {};
-config
+
 registerCustomersController.registrar = async (req, res) => {
     try {
         const {
