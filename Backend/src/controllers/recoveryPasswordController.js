@@ -9,25 +9,24 @@ import { config } from "../config.js";
 import customerModel from "../models/customers.js"
 
 //Array de funciones
-const recoveryPassword = {};
+const recoveryPasswordController = {};
 
-recoveryPasswordController.requestCode = async (req, seq) => {
+recoveryPasswordController.requestCode = async (req, res) => {
     try{
         //Solicitamos los datos
         const {email} = req.body;
 
         //Validar que el correo si este en la BD
         const userFound = await customerModel.findOne({ email })
-
         if(!userFound){
-            return resizeBy.status(400).json({message: "user not found"})
+            return res.status(400).json({message: "user not found"})
         }
 
         //generar el numero aleatorio
         const randomCode = crypto.randomBytes(3).toString("hex")
 
         //Guardamos todo en un token
-        const token = jsonwebtoken.sing(
+        const token = jsonwebtoken.sign(
             //#1- ¿que vamos a guardar?
             {email, randomCode, userType: "customer", verified: false},
             //#2- Secret key
@@ -55,8 +54,8 @@ recoveryPasswordController.requestCode = async (req, seq) => {
             from: config.email.user_email,
             to: email,
             subject: "Codigo de recuperacion de contraseña",
-            body: "El codigo vence en 15 minutos",
-            hmtl: HTMLRecoveryEmail(randomCode)
+            text: "El codigo vence en 15 minutos " + randomCode,
+            
         }
 
         //#3-Enviar el correo
@@ -91,9 +90,9 @@ recoveryPasswordController.verifyCode = async (req, res) => {
 
         //En cambio, si escribe bien el codigo
         //vamos a colocar en el token que ya esta verificado
-        const newToken = jsonwebtoken.sing(
+        const newToken = jsonwebtoken.sign(
             //#1- ¿Que vamos a guardar?
-            {email: decoded.email, userType: "customer", verify: true},
+            {email: decoded.email, userType: "customer", verified: true},
             //#2-secret key
             config.JWT.secret,
             //#3- ¿Cuando expira?
@@ -110,7 +109,7 @@ recoveryPasswordController.verifyCode = async (req, res) => {
     }
 };
 
-recoveryPasswordController.newPassword = async (req, seq) =>{
+recoveryPasswordController.newPassword = async (req, res) =>{
     try{
         //#1- solicitamos los datos
         const {newPassword, confirmNewPassword } = req.body;
@@ -120,12 +119,12 @@ recoveryPasswordController.newPassword = async (req, seq) =>{
             return res.status(400).json({message: "passwords doesnt match"})
         }
 
-        //vamos a comprobar que ele tokn ya esta verifacado
+        //vamos a comprobar que el toke n ya esta verifacado
         const token = req.cookies.recoveryCookie;
         const decoded = jsonwebtoken.verify(token, config.JWT.secret)
 
         if( !decoded.verified){
-            return res.status(400).json({message: "code not virified"})
+            return res.status(400).json({message: "code not verified"})
         }
 
         //Encriptar la nueva contraseña

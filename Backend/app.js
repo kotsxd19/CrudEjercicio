@@ -13,14 +13,20 @@ import cookieParser from "cookie-parser";
 import loginCustomerRouters from './src/routers/loginCustomer.js'
 import logoutRouter from './src/routers/logout.js'
 import recoveryPasswordRouters from "./src/routers/recoveryPassword.js"
+import cors from "cors";
 
 const app = express()
+
+app.use(cors({
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    //permitir el envio de cookies y credenciales
+    credentials: true
+}))
 
 app.use(cookieParser())
 
 //que acepte json desde postman
 app.use(express.json())
-
 app.use("/api/products", productsRouter)
 app.use("/api/branchs", branchrouter)
 app.use("/api/employees", employeesRoutes)
@@ -33,7 +39,7 @@ app.use("/api/registerCustomers", registerCustomersRouters)
 app.use("/api/registerEmployees", registerEmployeesRouters)
 app.use("/api/Login", loginCustomerRouters)
 app.use("/api/logout", logoutRouter)
-app.user("/api/recoveryPassword", recoveryPasswordRouters)
+app.use("/api/recoveryPassword", recoveryPasswordRouters)
 
 export default app;
 
