@@ -14,16 +14,19 @@ import loginCustomerRouters from './src/routers/loginCustomer.js'
 import logoutRouter from './src/routers/logout.js'
 import recoveryPasswordRouters from "./src/routers/recoveryPassword.js"
 import cors from "cors";
+import limiter from './middlewares/rateLimiter.js'
 
-const app = express()
+    const app = express()
 
-app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
-    //permitir el envio de cookies y credenciales
-    credentials: true
-}))
+    app.use(limiter);
 
-app.use(cookieParser())
+    app.use(cors({
+        origin: ["http://localhost:5173", "http://localhost:5174"],
+        //permitir el envio de cookies y credenciales
+        credentials: true
+    }))
+
+    app.use(cookieParser())
 
 //que acepte json desde postman
 app.use(express.json())

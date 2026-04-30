@@ -9,6 +9,12 @@ router.route("/")
 .get(productsController.getProducts)
 .post(productsController.createProduct)
 
+router.route("/seacrchByName").post(productsController.searchByName)
+router.route("/low-stock").get(productsController.getLowStock)
+router.route("/price-range").post(productsController.getProductsByPriceRange)
+router.route("/count").get(productsController.countProduct)
+
+
 router.route("/:id")
 .put(productsController.updateProduct)
 .delete(productsController.deleteProduct)
