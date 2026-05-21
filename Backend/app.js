@@ -13,8 +13,11 @@ import cookieParser from "cookie-parser";
 import loginCustomerRouters from './src/routers/loginCustomer.js'
 import logoutRouter from './src/routers/logout.js'
 import recoveryPasswordRouters from "./src/routers/recoveryPassword.js"
+import ProvidersRouters from './src/routers/providers.js'
+
 import cors from "cors";
 import limiter from './middlewares/rateLimiter.js'
+
 
     const app = express()
 
@@ -43,6 +46,7 @@ app.use("/api/registerEmployees", registerEmployeesRouters)
 app.use("/api/Login", loginCustomerRouters)
 app.use("/api/logout", logoutRouter)
 app.use("/api/recoveryPassword", recoveryPasswordRouters)
+app.use("/api/providers", ProvidersRouters)
 
 export default app;
 
