@@ -14,6 +14,7 @@ import loginCustomerRouters from './src/routers/loginCustomer.js'
 import logoutRouter from './src/routers/logout.js'
 import recoveryPasswordRouters from "./src/routers/recoveryPassword.js"
 import ProvidersRouters from './src/routers/providers.js'
+import cart from './src/routers/cart.js'
 
 import cors from "cors";
 import limiter from './middlewares/rateLimiter.js'
@@ -47,6 +48,7 @@ app.use("/api/Login", loginCustomerRouters)
 app.use("/api/logout", logoutRouter)
 app.use("/api/recoveryPassword", recoveryPasswordRouters)
 app.use("/api/providers", ProvidersRouters)
+app.use("/api/cart", cart)
 
 export default app;
 
