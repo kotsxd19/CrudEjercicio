@@ -15,6 +15,7 @@ import logoutRouter from './src/routers/logout.js'
 import recoveryPasswordRouters from "./src/routers/recoveryPassword.js"
 import ProvidersRouters from './src/routers/providers.js'
 import cart from './src/routers/cart.js'
+import wompiRoutes from './src/routers/wompiToken.js'
 
 import cors from "cors";
 import limiter from './middlewares/rateLimiter.js'
@@ -44,11 +45,13 @@ app.use("/api/clients", clientsRouters)
 app.use("/api/customers",customersRouters)
 app.use("/api/registerCustomers", registerCustomersRouters)
 app.use("/api/registerEmployees", registerEmployeesRouters)
-app.use("/api/Login", loginCustomerRouters)
+app.use("/api/Login", payment3ds)
 app.use("/api/logout", logoutRouter)
 app.use("/api/recoveryPassword", recoveryPasswordRouters)
 app.use("/api/providers", ProvidersRouters)
 app.use("/api/cart", cart)
+app.use("/api/testPayment")
+app.use("/api/wompi", wompiRoutes)
 
 export default app;
 
