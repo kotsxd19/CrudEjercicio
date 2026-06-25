@@ -17,6 +17,7 @@ import ProvidersRouters from './src/routers/providers.js'
 import cart from './src/routers/cart.js'
 import wompiRoutes from './src/routers/wompiToken.js'
 import DeliveryDrivers from './src/routers/deliveryDrivers.js'
+import eventRouter from './src/routers/event.js'
 
 import cors from "cors";
 import limiter from './middlewares/rateLimiter.js'
@@ -53,6 +54,7 @@ app.use("/api/providers", ProvidersRouters)
 app.use("/api/cart", cart)
 app.use("/api/wompi", wompiRoutes)
 app.use("/api/DeliveryDrivers", DeliveryDrivers)
+app.use("/api/Evento", eventRouter)
 
 export default app;
 
