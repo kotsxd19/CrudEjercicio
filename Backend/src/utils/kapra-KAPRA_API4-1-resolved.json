@@ -1,0 +1,334 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentacion de KAPRA",
+    "description": "esta la documentacion KAPRA para el ptc del ITR",
+    "version": "1"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/kapra/KAPRA_API4/1",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "http://localhost",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": [
+          "productos"
+        ],
+        "summary": "Your GET endpoint",
+        "description": "con este método mostramos todo los productos de la base de datos",
+        "operationId": "get-products",
+        "parameters": [
+          {
+            "name": "authCookie",
+            "in": "cookie",
+            "description": "\"clientes\"",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Produtc not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "productos"
+        ],
+        "summary": "Your PUT endpoint",
+        "description": "Este metodo es para Actualizar un producto",
+        "operationId": "put-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/products"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "productos"
+        ],
+        "summary": "Your POST endpoint",
+        "description": "Con este metodo guardamos un nuevo producto",
+        "operationId": "post-products",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/products"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "productos"
+        ],
+        "summary": "Your DELETE endpoint",
+        "description": "Este metodo elimina los productos",
+        "operationId": "delete-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/deliveryDrivers": {
+      "get": {
+        "tags": [
+          "Repartidores"
+        ],
+        "summary": "Your GET endpoint",
+        "description": "Metodo para mostrar los repartidores",
+        "operationId": "get-deliveryDrivers",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Repartidores"
+        ],
+        "summary": "Your PUT endpoint",
+        "description": "metodo para actualizar",
+        "operationId": "put-deliveryDrivers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deliveryDrivers"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Repartidores"
+        ],
+        "summary": "Your POST endpoint",
+        "description": "Metodo para insertar repartidores",
+        "operationId": "post-deliveryDrivers",
+        "requestBody": {
+          "description": "para el array de carros tenemos que enviarle el modelo y la marca con\nlos campos model y brand, ademas se tiene que subir la imagen como\narchivo\n",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deliveryDrivers"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Repartidores"
+        ],
+        "summary": "Your DELETE endpoint",
+        "description": "Borrar un repartidos",
+        "operationId": "delete-deliveryDrivers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/deliveryDrivers/{id}": {
+      "get": {
+        "tags": [
+          "Repartidores"
+        ],
+        "summary": "Your GET endpoint",
+        "operationId": "get-deliveryDrivers-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "products": {
+        "title": "products",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "stock": {
+            "minimum": 0,
+            "type": "number"
+          }
+        }
+      },
+      "deliveryDrivers": {
+        "title": "deliveryDrivers",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "cars": {
+            "type": "array",
+            "items": {}
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

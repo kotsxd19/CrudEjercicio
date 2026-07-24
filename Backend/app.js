@@ -22,6 +22,9 @@ import eventRouter from './src/routers/event.js'
 import cors from "cors";
 import limiter from './middlewares/rateLimiter.js'
 
+import swaggerUi from "swagger-ui-express"
+import swaggerDocument from "./src/utils/kapra-KAPRA_API4-1-resolved.json" with {type: "json"}
+
 
     const app = express()
 
@@ -55,6 +58,7 @@ app.use("/api/cart", cart)
 app.use("/api/wompi", wompiRoutes)
 app.use("/api/DeliveryDrivers", DeliveryDrivers)
 app.use("/api/Evento", eventRouter)
+app.use("/api/Documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 export default app;
 
